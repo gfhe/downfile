@@ -1,9 +1,12 @@
 #!/bin/bash
-mkdir /data
+num=6
+dir=/tmp/data
+
+mkdir -p $dir
 
 while read url
 do 
-  wget -P data $url
+  mwget -d $dir -n $num $url
   if [ $? -eq 0 ];then
     echo -e "✅ '$url'\n"
 	else
@@ -11,4 +14,4 @@ do
 	fi
 done < filelist.txt
 
-echo "find all files in path /data"
+echo "downloaded data in path $dir"
